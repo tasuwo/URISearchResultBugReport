@@ -57,6 +57,13 @@ class ViewController: UIViewController {
     private func configureController() {
         let request: NSFetchRequest<Item> = Item.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Item.title, ascending: true)]
+
+        // No problem.
+        // request.predicate = NSPredicate(format: "title LIKE %@", "*H*" as CVarArg)
+
+        // Leading to a crash !!!
+        // request.predicate = NSPredicate(format: "url LIKE %@", "*H*" as CVarArg)
+
         controller = NSFetchedResultsController(fetchRequest: request,
                                                 managedObjectContext: container.viewContext,
                                                 sectionNameKeyPath: nil,
